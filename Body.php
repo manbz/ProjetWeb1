@@ -1,3 +1,7 @@
+
+<?php
+session_start();
+?>
 <html lang="fr">
   <head>
     <meta charset="utf-8">
@@ -5,7 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
     <link href="Style-general.css" rel="stylesheet">
   </head>
     
@@ -14,11 +17,27 @@
       <div class="container">
           
           <div id="titre1">
+              <h1> 
+         <?php
+        
+        if (isset($_SESSION['identifiant']))
+        {
+            echo 'Bonjour ' . $_SESSION['prenom'].'!';
+        }
+        else
+        {
+        ?>
+              </h1>
               <h1>Happy time</h1>
-          </div>
+         
+          <?php 
+        }
+          ?> 
+        </div>
         <p id="titre2">
             Quittez le quotidien et venez vous distraire!
         </p>
+
       </div>
     </div>
 
