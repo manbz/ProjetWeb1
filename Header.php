@@ -24,7 +24,9 @@ session_start();
                 if (isset($_SESSION['identifiant'])) 
                 {
                     ?>
+                <a class="btn" href="PageMembre.php" role="button">Mon profil</a>
                 <a class="btn btn-success" href="Traitement-Deconnexion.php" role="button">Déconnexion</a>
+                
                 <?php
                 }
                 else

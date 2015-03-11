@@ -1,7 +1,7 @@
 body {
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #eee;
+  background-color: white;
 }
 
 .form-signin {
@@ -41,7 +41,7 @@ body {
 
 #titre3 {color: #4169E1 !important;
         font-family: fantasy;
-        margin-top: 5px;
+        margin-top: 2.5%;
         font-weight: bold;
         text-align: center;
         font-size: 40px;}

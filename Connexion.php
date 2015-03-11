@@ -22,12 +22,15 @@
 
       <form class="form-signin" method="POST" action="Traitement-connexion.php">
         <h2 class="form-signin-heading" id="titre3">Connectez vous!</h2>
-        <!--<label for="inputEmail" class="sr-only">Email address</label>-->
         <input type="text" name="identifiant" class="form-control" placeholder="Identifiant" required autofocus>
-        <!--<label for="inputPassword" class="sr-only">Password</label> -->
+        <?php     
+        if ($pseudoFaux==1) 
+              {
+                  echo 'Votre pseudo est erroné';
+              }
+        ?>
         <input type="password" name="mdp" class="form-control" placeholder="Mot de passe" required>
         <button class="btn btn-success" type="submit">Se connecter</button>
-        <!--<a class="btn btn-success" href="monCompte.html" role="button">Se connecter</a>-->
       </form>
         
         

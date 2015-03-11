@@ -1,8 +1,51 @@
 <?php
+session_start();
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+require 'connect.php';
+
+//$pseudoExiste=FALSE;
+
+$identifiant=$_POST['identifiant'];
+$mdp=$_POST['mdp'];
+$prenom=$_POST['prenom'];
+$nom=$_POST['nom'];
+$email=$_POST['email'];
+$adresse=$_POST['adresse'];
+$CP=$_POST['codePostal'];
+$ville=$_POST['ville'];
+
+
+if (isset($_POST['newsletter']))
+{
+    $news="O";
+}
+else
+{
+   $news="N";   
+}
+
+$rqinscription="SELECT mdp FROM UTILISATEUR WHERE identifiant='".$identifiant."'";
+$resincription=mysql_query($rqinscription);
+$nbres2=mysql_num_rows($resincription);
+
+if ($nbres2!=0)
+    {
+    //le pseudo existe déja dans la base de données
+    header('Location: Inscription.php');
+    $pseudoExiste=TRUE;
+    
+    }
+else 
+     {
+     $rqinscrip="INSERT INTO UTILISATEUR VALUES('$identifiant','$mdp','$prenom','$nom','$adresse','$CP','$ville','$email','$news')";
+     $inscription=mysql_query($rqinscrip);
+     $_SESSION['identifiant']=$identifiant;
+     $_SESSION['prenom']=$prenom;
+
+     header ('Location: PageMembre.php');
+    }
+
+?>
+
+
 

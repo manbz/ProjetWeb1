@@ -2,6 +2,9 @@
 session_start();
 
 require 'connect.php';
+$mdpFaux=FALSE;
+$pseudoFaux=FALSE;
+
 
 $idsaisi=$_POST['identifiant'];
 $rq2="SELECT mdp FROM UTILISATEUR WHERE identifiant='".$idsaisi."'";
@@ -19,30 +22,41 @@ if ($nbresultat!=0)
     if ($nbresultatmdp!=0) 
     {
         
-        $rq3="SELECT prenom FROM UTILISATEUR WHERE identifiant='".$idsaisi."'";
-        $prenom=mysql_query($rq3);
-        $prenomUser=mysql_result($prenom, 0, 'prenom');
+        $rq3="SELECT * FROM UTILISATEUR WHERE identifiant='".$idsaisi."'";
+        $recup=mysql_query($rq3);
+        $_SESSION['prenom']=mysql_result($recup, 0, 'prenom');
+        $_SESSION['nom']=mysql_result($recup, 0, 'nom');
+        $_SESSION['adresse']=mysql_result($recup, 0, 'adresse');
+        $_SESSION['CP']=mysql_result($recup, 0, 'codePostal');
+        $_SESSION['ville']=mysql_result($recup, 0, 'ville');
+        $_SESSION['email']=mysql_result($recup, 0, 'email');
+        
+        
+
         
         $_SESSION['identifiant'] = $idsaisi;
-        $_SESSION['prenom']=$prenomUser;
+        //$_SESSION['prenom']=$prenom;
+        
+        
+        $mdpFaux=FALSE;
+        $pseudoFaux=FALSE;
         
         header ('Location: PageMembre.php');
     }
     else
     {
-        echo 'Le mot de passe est éronné';
+        //mauvais mdp
+        $mdpFaux=TRUE;
+        header ('Location: Connexion.php');
+        
     }
     
 }
 else
-{
-    echo "Le pseudo n'est pas bon";
-}
-
-
-if (isset($_SESSION['identifiant']))
-{
-    echo 'Bonjour ' . $_SESSION['prenom'];
+{   //mauvais pseudo
+    $pseudoFaux=1;
+    header ('Location: Connexion.php');
+     
 }
 
 

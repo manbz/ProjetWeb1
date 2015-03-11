@@ -50,7 +50,7 @@ session_start();
                 <div id='image'>
                 <p><img id="tailleimg" src="casse-noisette.jpg" alt ="event1"/></p>
                 </div>
-                <p><a class="btn btn-default" href="pageEvenement.html" role="button">Voir l'évènement &raquo;</a></p>
+                <p><a class="btn btn-default" href="pageEvenement.php" role="button" type="submit">Voir l'évènement &raquo;</a></p>
           </div>
         </div>
           
@@ -60,7 +60,7 @@ session_start();
           <div id='image'>
             <p><img id="tailleimg" src="coup-de-foudre.jpg" alt ="event2"/></p>
           </div>
-            <p><a class="btn btn-default" href="pageEvenement.html" role="button">Voir l'évènement &raquo;</a></p>
+            <p><a class="btn btn-default" href="pageEvenement.php" role="button">Voir l'évènement &raquo;</a></p>
             </div>
             </div>
           
@@ -70,7 +70,7 @@ session_start();
           <div id='image'>
             <p><img id="tailleimg" src="rugby.jpg" alt ="event3"/></p>
           </div>
-            <p><a class="btn btn-default" href="pageEvenement.html" role="button">Voir l'évènement &raquo;</a></p>
+            <p><a class="btn btn-default" href="pageEvenement.php" role="button">Voir l'évènement &raquo;</a></p>
             </div>
        </div>
       
