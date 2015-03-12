@@ -56,3 +56,14 @@ height: 150px !important;}
 margin-left: 11%;
 
 } 
+
+#lignes{margin-left: 28%;}
+
+#lignesTitre {margin-left: 28%;
+
+              //margin-bottom: 2.5%;
+                color: #4169E1 !important;
+                font-family: fantasy;
+                font-size: 40px;}
+
+#largeurLigne{width: 85%;}

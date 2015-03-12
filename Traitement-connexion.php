@@ -24,12 +24,12 @@ if ($nbresultat!=0)
         
         $rq3="SELECT * FROM UTILISATEUR WHERE identifiant='".$idsaisi."'";
         $recup=mysql_query($rq3);
-        $_SESSION['prenom']=mysql_result($recup, 0, 'prenom');
-        $_SESSION['nom']=mysql_result($recup, 0, 'nom');
-        $_SESSION['adresse']=mysql_result($recup, 0, 'adresse');
-        $_SESSION['CP']=mysql_result($recup, 0, 'codePostal');
-        $_SESSION['ville']=mysql_result($recup, 0, 'ville');
-        $_SESSION['email']=mysql_result($recup, 0, 'email');
+        $_SESSION['prenom']=mysql_result($recup, 0, 'Prenom');
+        $_SESSION['nom']=mysql_result($recup, 0, 'Nom');
+        $_SESSION['adresse']=mysql_result($recup, 0, 'Adresse');
+        $_SESSION['CP']=mysql_result($recup, 0, 'CodePostal');
+        $_SESSION['ville']=mysql_result($recup, 0, 'Ville');
+        $_SESSION['email']=mysql_result($recup, 0, 'Email');
         
         
 

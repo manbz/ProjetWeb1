@@ -21,10 +21,11 @@ include 'Header.php';
       <div  class="row">
         <div id="menu" class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li><a href="" role="button">Mes évènements</a></li>
-            <li><a href="PageGroupe.php" role="button">Créer un groupe</a></li>
-            <li><a href="" role="button">Créer un évènement</a></li>
+              <li><a href="PageMembre.php" role="button">Mes évènements</a></li>
+            <li><a href="CreerGroupe.php" role="button">Créer un groupe</a></li>
+            <li><a href="CreerEvent.php" role="button">Créer un évènement</a></li>
             <li class="active"><a href="modifierMonProfil.php"> Modifier mon profil <span class="sr-only">(current)</span></a></li>
+            <li><a href="modifierMotDePasse.php" role="button">Modifier mon mot de passe</a></li>
           </ul>
         </div>
       </div>
@@ -39,10 +40,6 @@ include 'Header.php';
         
         <div class="container">
         <form class="form-signin" method="POST" action="Traitement-modification.php">
-        <h5 class="form-signin-heading" id="titre4">Modifiez mon mot de passe</h5>
-        <input type="password" name="mdp1" class="form-control" placeholder="Mot de passe" required>
-        <input type="password" name="mdp2" class="form-control" placeholder="Confirmer le mot de passe" required>
-        
         <h5 class="form-signin-heading" id="titre4">Modifiez vos informations personelles</h5>
         <input type="text" name="prenom" class="form-control" value="<?php echo $_SESSION['prenom']; ?>" required>
         <input type="text" name="nom" class="form-control" value="<?php echo $_SESSION['nom']; ?>" required>

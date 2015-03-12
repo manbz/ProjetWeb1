@@ -24,10 +24,10 @@
         <h2 class="form-signin-heading" id="titre3">Connectez vous!</h2>
         <input type="text" name="identifiant" class="form-control" placeholder="Identifiant" required autofocus>
         <?php     
-        if ($pseudoFaux==1) 
-              {
-                  echo 'Votre pseudo est erroné';
-              }
+        //if (empty ($_SESSION['identifiant'])) 
+           //   {
+             //     echo 'Votre pseudo est erroné';
+            //  }
         ?>
         <input type="password" name="mdp" class="form-control" placeholder="Mot de passe" required>
         <button class="btn btn-success" type="submit">Se connecter</button>
