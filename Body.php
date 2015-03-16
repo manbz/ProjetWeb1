@@ -1,8 +1,9 @@
-
 <?php
 session_start();
+require 'connect.php';
+echo 'manon';
 ?>
-<html lang="fr">
+
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,8 +12,7 @@ session_start();
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="Style-general.css" rel="stylesheet">
   </head>
-    
-  <body>
+  
     <div class="jumbotron">
       <div class="container">
           
@@ -28,7 +28,7 @@ session_start();
         {
         ?>
               </h1>
-              <h1>Happy time</h1>
+              <h1>Happy'culture</h1>
          
           <?php 
         }
@@ -42,57 +42,39 @@ session_start();
     </div>
 
     <div class="container">
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-md-4">
-            <div id='disposition1'>
-                <h3>Casse Noisette</h3>
-                <div id='image'>
-                <p><img id="tailleimg" src="casse-noisette.jpg" alt ="event1"/></p>
-                </div>
-                <p><a class="btn btn-default" href="pageEvenement.php" role="button" type="submit">Voir l'évènement &raquo;</a></p>
-          </div>
-        </div>
-          
-        <div class="col-md-4">
-            <div id='disposition1'>
-          <h3>Coup de foudre a Besançon</h3>
-          <div id='image'>
-            <p><img id="tailleimg" src="coup-de-foudre.jpg" alt ="event2"/></p>
-          </div>
-            <p><a class="btn btn-default" href="pageEvenement.php" role="button">Voir l'évènement &raquo;</a></p>
-            </div>
-            </div>
-          
-        <div class="col-md-4">
-            <div id='disposition1'>
-          <h3>Stade Toulousain/ASM Clermont-</h3>
-          <div id='image'>
-            <p><img id="tailleimg" src="rugby.jpg" alt ="event3"/></p>
-          </div>
-            <p><a class="btn btn-default" href="pageEvenement.php" role="button">Voir l'évènement &raquo;</a></p>
-            </div>
-       </div>
       
-            <div class="row">
+	  <?php
+	  
+	  $Req1="SELECT * FROM EVENEMENT, CATEGORIE, LIEU, SEDEROULE WHERE EVENEMENT.NoEvenement=SEDEROULE.NumEvenement AND EVENEMENT.NoEvenement=CATEGORIE.NoEvenement AND EVENEMENT.Lieu=LIEU.NoLieu AND date=(SELECT Min(date)) ORDER BY date";
+	  //$Req2="SELECT Photo FROM EVENEMENT, CATEGORIE, LIEU, SEDEROULE WHERE EVENEMENT.NoEvenement=SEDEROULE.NumEvenement AND EVENEMENT.NoEvenement=CATEGORIE.NoEvenement AND EVENEMENT.Lieu=LIEU.NoLieu AND date=(SELECT Min(date)) ORDER BY date";
+	  //$Req3="SELECT Date FROM EVENEMENT, CATEGORIE, LIEU, SEDEROULE WHERE EVENEMENT.NoEvenement=SEDEROULE.NumEvenement AND EVENEMENT.NoEvenement=CATEGORIE.NoEvenement AND EVENEMENT.Lieu=LIEU.NoLieu AND date=(SELECT Min(date)) ORDER BY date";
+
+	  $donnees1=mysql_query($Req1);
+$i=0;
+while($i<6 && $Evenement=mysql_fetch_array($donnees1))
+{
+		  ?>
+		<div class="row">
         <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
-              
-            <div class="row">
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
-      </div>
+            <div id='disposition1'>
+                <h3><?php echo $Evenement['NomEvenement'] ?></h3>Le <?php echo $Evenement['Date'] ?>
+                 <div id='image'>
+                 <p><img id="tailleimg" src="<?php$Evenement['Photo']?>" alt ="event1"/></p>
+                 </div>
+                 <p><a class="btn btn-default" href="pageEvenement.php" role="button" type="submit">Voir l'évènement &raquo;</a></p>
             </div>
+        </div>
+		  <?php
+$i=$i+1;
+}
+	  
+	  ?>
+
+                <?php echo $NomEvenement[3] ?>Le <?php echo $Date[2] ?>
+
       </div>
     </div>
 
-      <hr>
-
   </body>
-</html>
+
+

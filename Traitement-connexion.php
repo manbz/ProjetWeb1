@@ -41,8 +41,14 @@ if ($nbresultat!=0)
         $mdpFaux=FALSE;
         $pseudoFaux=FALSE;
         
-        header ('Location: PageMembre.php');
+        if ($_SESSION['identifiant']=='gestionnaire') 
+        {
+           header ('Location: PageGestionnaire.php'); 
+        }
+        else
+        {header ('Location: PageMembre.php');}
     }
+        
     else
     {
         //mauvais mdp

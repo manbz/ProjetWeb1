@@ -9,17 +9,10 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="Style-general.css" rel="stylesheet">
   </head>
-</html>
+
 
 
 <?php
 include 'Header.php';
 include 'Body.php';
-
-if (isset($_SESSION['identifiant']))
-{
-    echo 'Bonjour ' . $_SESSION['identifiant'];
-}
-
-
 ?>

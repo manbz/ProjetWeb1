@@ -14,15 +14,13 @@ session_start();
     <link href="Style-formulaire.css" rel="stylesheet">
     <link href="Style-general.css" rel="stylesheet">
     <link href="css/dashboard.css" rel="stylesheet">
-    
+  
+   </head>
       <?php
       require 'connect.php';
       include 'header.php';
       ?>
     
-  </head>
-     <body>
-        
     <div  class="container-fluid">
       <div  class="row">
         <div id="menu" class="col-sm-3 col-md-2 sidebar">

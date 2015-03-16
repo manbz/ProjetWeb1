@@ -2,7 +2,6 @@
 session_start();
 ?>
 
-
 <html lang="fr">
   <head>
     <meta charset="utf-8">
@@ -14,18 +13,16 @@ session_start();
     <link href="css/dashboard.css" rel="stylesheet">
   </head>
     
-<?php
+    <?php
   include 'Header.php';
+  ?>
   
-  if (isset($_SESSION['identifiant']) && $_SESSION['identifiant']!='gestionnaire') 
-{
-?>
-  
-    <div  class="container-fluid">
+      <div  class="container-fluid">
       <div  class="row">
         <div id="menu" class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li class="active"><a href="#">Mes évènements <span class="sr-only">(current)</span></a></li>
+            <li><a href="CreerGroupe.php" role="button">Créer un groupe</a></li>
             <li><a href="CreerGroupe.php" role="button">Créer un groupe</a></li>
             <li><a href="CreerEvent.php" role="button">Créer un évènement</a></li>
             <li><a href="modifierMonProfil.php" role="button">Modifier mon profil</a></li>
@@ -33,7 +30,7 @@ session_start();
           </ul>
         </div>
       </div>
-    </div>
+        </div>
 
       <h2 id="lignesTitre" class="sub-header">Je participe aux évènements</h2>
       <div id="lignes" class="table-responsive">
@@ -83,16 +80,10 @@ session_start();
               </tbody>
             </table>
           </div>
+        </div>
+      </div>
+    </div>
 
-
-<?php
-}
-    
-else
-{
-    header('Location: Accueil.php');
-}
-?>
       
       
   </body>

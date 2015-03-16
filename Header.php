@@ -6,13 +6,20 @@ session_start();
       <div class="container">
 
         <div id="navbar" class="navbar-collapse collapse">
+            
             <form class="navbar-form navbar-right">
-            <form>
+                
                 <?php
                 if (isset($_SESSION['identifiant'])) 
                 {
+                    if ($_SESSION['identifiant']=='gestionnaire')
+                    {
+                        echo '<a class="btn" href="PageGestionnaire.php" role="button">Gerer les evènements</a>';
+                    }
+                    else
+                        
+                    {echo '<a class="btn" href="PageMembre.php" role="button">Mon profil</a>';}
                     ?>
-                <a class="btn" href="PageMembre.php" role="button">Mon profil</a>
                 <a class="btn btn-success" href="Traitement-Deconnexion.php" role="button">Déconnexion</a>
                 
                 <?php
@@ -26,12 +33,17 @@ session_start();
                 }
             ?>
             </form>
+            
+            
+            
             <form class="navbar-form navbar-left">
                 <a class="btn" href="Accueil.php" role="button"><img id="iconehome" src="icone-maison.png" alt ="home"/></a>
            </form>
+            <form class="navbar-form navbar-left" id="logosite">
+                <img id="iconehome" src="logo.png" alt ="home"/>
+            </form>
          
+            
         </div>
       </div>
     </nav>
-  </body>
-</html>
