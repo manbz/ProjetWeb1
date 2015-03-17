@@ -1,5 +1,4 @@
 <?php
-session_start();
 include 'Header.php';
 ?>
 
@@ -33,6 +32,7 @@ include 'Header.php';
       <h2 id="lignesTitre" class="sub-header">Je participe aux évènements</h2>
       <div id="lignes" class="table-responsive">
           <table id="largeurLigne" class="table table-striped">
+
               <thead>
                 <tr>
                   <th>Date</th>
@@ -41,21 +41,67 @@ include 'Header.php';
                   <th>Prix</th>
                </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>12/02/2016</td>
-                  <td>Casse Noisette</td>
-                  <td>Grand opéra</td>
-                  <td>35€</td>
+				<tbody>
+			  <?php
+	require 'connect.php';
+	
+	if ($CONNEXION)
+	{	
+		$Req1="SELECT identifiant FROM UTILISATEUR WHERE Prenom='Carl' AND Nom='Moscet'";
+		$Membre=mysql_query($Req1);
+					echo $Membre;
+		$Req="SELECT * FROM APPARTENIRENPRIVE, GROUPE, EVENEMENT, LIEU, SEDEROULE WHERE SEDEROULE.NumEvenement=EVENEMENT.NoEvenement AND GROUPE.NoGroupe=APPARTENIRENPRIVE.Groupe AND EVENEMENT.Groupe=APPARTENIRENPRIVE.Groupe AND LIEU.NoLieu=EVENEMENT.Lieu AND Membre=$Membre";
+		$Res=mysql_query($Req);
+		$Req2="SELECT * FROM APPARTENIRPUBLIQUEMENT, EVENEMENT, LIEU, SEDEROULE WHERE SEDEROULE.NumEvenement=EVENEMENT.NoEvenement AND EVENEMENT.NoEvenement=APPARTENIRPUBLIQUEMENT.Evenement AND LIEU.NoLieu=EVENEMENT.Lieu AND utilisateur=$Membre";
+		$Res2=mysql_query($Req2);
+		while ($EVENEMENT=mysql_fetch_array($Res))
+		{?>
+	<tr>
+                  <td> <?php echo $EVENEMENT['Date'];?></td>
+                  <td> <?php echo $EVENEMENT['NomEvenement'];?></td>
+                  <td><?php echo $EVENEMENTPUBLIC['NomLieu'];
+			echo $EVENEMENTPUBLIC['AdresseLieu'];
+			echo $EVENEMENTPUBLIC['CodePostalLieu'];
+			echo $EVENEMENTPUBLIC['VilleLieu'];?></td>
+                  <td><?php echo $EVENEMENT['Prix'];?></td>
                 </tr>
-                <tr>
-                  <td>1,002</td>
-                  <td>amet</td>
-                  <td>consectetur</td>
-                  <td>adipiscing</td>
+				
+			<?php//echo $EVENEMENT['NomEvenement'];
+			//echo $EVENEMENT['Statut'];
+			//echo $EVENEMENT['Prix'];
+			//echo $EVENEMENT['Description'];
+			//echo $EVENEMENT['NomLieu'];
+			//echo $EVENEMENT['AdresseLieu'];
+			//echo $EVENEMENT['CodePostalLieu'];
+			//echo $EVENEMENT['VilleLieu'];
+			?><br/><?php
+		}
+		while ($EVENEMENTPUBLIC=mysql_fetch_array($Res2))
+		{?>
+			<tr>
+                  <td><?php echo $EVENEMENTPUBLIC['Date'];?></td>
+                  <td><?php echo $EVENEMENTPUBLIC['NomEvenement'];?></td>
+                  <td><?php echo $EVENEMENTPUBLIC['NomLieu'];
+						echo $EVENEMENTPUBLIC['AdresseLieu'];
+						echo $EVENEMENTPUBLIC['CodePostalLieu'];
+						echo $EVENEMENTPUBLIC['VilleLieu'];?></td>
+                  <td><?php echo $EVENEMENTPUBLIC['Prix'];?></td>
 
                 </tr>
-                <tr>
+			<?php
+		}
+		
+	}
+	else 
+	{ echo "erreur de connexion"; }
+
+	//$_SESSION['Identifiant']
+	mysql_close();
+?>
+              
+                
+                
+               <!-- <tr>
                   <td>1,003</td>
                   <td>Integer</td>
                   <td>nec</td>
@@ -74,7 +120,7 @@ include 'Header.php';
                   <td>diam</td>
                   <td>Sed</td>
 
-                </tr>
+                </tr>-->
               </tbody>
             </table>
           </div>
