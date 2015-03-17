@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'Header.php';
 ?>
 
 <html lang="fr">
@@ -14,10 +15,8 @@ session_start();
     <link href="Style-formulaire.css" rel="stylesheet">
   </head>
     
-  <?php
-  include 'Header.php';
-  ?>
-  
+  <body>
+
       <div  class="container-fluid">
       <div  class="row">
         <div id="menu" class="col-sm-3 col-md-2 sidebar">

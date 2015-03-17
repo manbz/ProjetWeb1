@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'Header.php';
 ?>
 
 <html lang="fr">
@@ -14,12 +15,9 @@ session_start();
     <link href="Style-formulaire.css" rel="stylesheet">
   </head>
     
-  <?php
-  include 'Header.php';
-  require 'Connect.php';
-  ?>
+  <body>
 
-     <div  class="container-fluid">
+      <div  class="container-fluid">
       <div  class="row">
         <div id="menu" class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
@@ -31,74 +29,27 @@ session_start();
           </ul>
         </div>
       </div>
-     </div>
+        </div>
 
       
         <h1 class="form-signin-heading" id="titre3">Créez votre évenement </h1>
         
-    <div class="container">
-        <form class="form-signin" method="POST" action="Traitement-creation-event.php">
-            <input type="text" name="nomEvent" class="form-control" placeholder="Nom de l'évènement" required>
-            <input type="text" name="prixEvent" class="form-control" placeholder="Prix de l'évènement" required >
-            
-            <textarea cols="20" rows="4" name="descriptionEvent" id="adresse" class="form-control" placeholder="Description de l'évènement" required></textarea>
-            
-            <h5 class="form-signin-heading" id="titre4">Choisissez la date de l'évènement</h5>
-            <input type="date" name="date" class="form-control" placeholder="Date" required >
-            <h5 class="form-signin-heading" id="titre4">Choisissez la catégorie de l'évènement</h5>
-            <select size="4" class="form-control" name="categorie">
-              <?php
-              //affiche les differentes catégories
-                $rqcategorie="SELECT DISTINCT NomCategorie FROM categorie";
-                $categorie=mysql_query($rqcategorie);
-                $nbcategorie=mysql_num_rows($categorie);
-                $i=0;
-                while ($i<$nbcategorie) 
-                {
-                    $chaquecategorie=mysql_result($categorie, $i, 'NomCategorie');
-                    $i++;
-                    echo '<option name="1" value="';
-                    echo $chaquecategorie;
-                    echo'">';
-                    echo $chaquecategorie;
-                    echo'</option>';
-                }
-              ?>
-            </select>
-            
-            
-            <?php
-            //permet de regarder si l'utilisateur connecté est créateur d'un groupe
-                $rqgroupe="SELECT NoGroupe, NomGroupe FROM groupe WHERE Responsable='".$_SESSION['identifiant']."'";
-                $touslesgroupes=mysql_query($rqgroupe);
-                $nbgroupe=mysql_num_rows($touslesgroupes);
-               
-                if ($nbgroupe!=0) 
-                {
-                    $i=0;
+        <div class="container">
+            <form class="form-signin" method="POST" action="Traitement-creation-event.php">
+        <input type="text" name="nomEvent" class="form-control" placeholder="Nom de l'évènement" required>
+        <input type="text" name="prixEvent" class="form-control" placeholder="Prix de l'évènement" required >
+        <textarea cols="20" rows="4" name="descriptionEvent" id="adresse" class="form-control" placeholder="Description de l'évènement" required></textarea>
+        <select size="4" class="form-control" name="categorie">Catégorie
+           <?php
+                   if ($_SESSION['']) {
+                       
+                   }
             ?>
-            <h5 class="form-signin-heading" id="titre4">Choisissez les participants à l'évènement</h5>
-                <select size="4" class="form-control" name="groupe">
-                    <option name="1" value="eventpublic">Tous les happy'membres</option>
-                <?php
-                
-                    
-                    while ($chaquegroupe=mysql_fetch_array($touslesgroupes)) 
-                    {
-                        //echo $chaquegroupe['NomGroupe'];
-                        echo '<option name="1" value="'.$chaquegroupe['NomGroupe'].'">'.$chaquegroupe['NomGroupe'].'</option>';
-                    }
-                }
-                
-                ?>
-                    </select> 
-            
-
-            <br/>
-            <button class="btn btn-success" type="submit">Créer l'évènement</button>
+        </select>
+        <button class="btn btn-success" type="submit">Créer l'évènement</button>
       </form>
     </div> 
-        
+
 <?php
 //il faut faire un if pour savoir si l'utilisateur appartient a un groupe ou pas 
 //en fonction de ca on connaitra le statut (public ou privé) de l'évènement

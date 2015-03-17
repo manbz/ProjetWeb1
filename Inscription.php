@@ -16,6 +16,7 @@ session_start();
     <link href="css/dashboard.css" rel="stylesheet">
     
   </head>
+     <body>
         
       <?php
       require 'connect.php';

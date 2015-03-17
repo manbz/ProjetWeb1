@@ -42,12 +42,7 @@ else
      $_SESSION['identifiant']=$identifiant;
      $_SESSION['prenom']=$prenom;
 
-     if ($_SESSION['identifiant']=='gestionnaire') 
-        {
-           header ('Location: PageGestionnaire.php'); 
-        }
-        else
-        {header ('Location: PageMembre.php');}
+     header ('Location: PageMembre.php');
     }
 
 ?>
