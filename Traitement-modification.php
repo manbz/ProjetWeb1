@@ -2,12 +2,12 @@
 session_start();
 require 'connect.php';
 
-$prenom=$_POST['prenom'];
-$nom=$_POST['nom'];
-$email=$_POST['email'];
-$adresse=$_POST['adresse'];
-$CP=$_POST['codePostal'];
-$ville=$_POST['ville'];
+$_SESSION['prenom']=$_POST['prenom'];
+$_SESSION['nom']=$_POST['nom'];
+$_SESSION['email']=$_POST['email'];
+$_SESSION['adresse']=$_POST['adresse'];
+$_SESSION['CodePostal']=$_POST['CP'];
+$_SESSION['ville']=$_POST['ville'];
 
 if (isset($_POST['newsletter']))
 {

@@ -47,8 +47,6 @@ height: 150px !important;}
 #form-event{height: 20%;
             width: 20%;}
 
-//.jumbotron{background-image: url("bleu.jpg");}
-
 
 
 #menu 
@@ -67,3 +65,8 @@ margin-left: 11%;
                 font-size: 40px;}
 
 #largeurLigne{width: 85%;}
+
+#logosite{margin-left: 35%;
+           color: #4169E1;
+           size: 40%;
+           font-family: fantasy;}

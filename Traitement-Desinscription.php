@@ -1,5 +1,7 @@
 <?php
-	$Req="DELETE FROM UTILISATEUR WHERE prenom=$_SESSION['prenom'] AND nom=$_SESSION['nom']";
+session_start();
+require 'connect.php';
+	$Req="DELETE FROM UTILISATEUR WHERE identifiant='".$_SESSION['identifiant']."'";
 	$Res=mysql_query($Req);
 	header ('Location: Accueil.php');
 

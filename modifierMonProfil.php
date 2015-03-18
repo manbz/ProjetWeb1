@@ -1,6 +1,5 @@
 <?php
 session_start();
-include 'Header.php';
 ?>
 
 <html lang="fr">
@@ -15,8 +14,10 @@ include 'Header.php';
     <link href="Style-formulaire.css" rel="stylesheet">
   </head>
     
-  <body>
-
+  <?php
+  include 'Header.php';
+  ?>
+  
       <div  class="container-fluid">
       <div  class="row">
         <div id="menu" class="col-sm-3 col-md-2 sidebar">
@@ -26,6 +27,7 @@ include 'Header.php';
             <li><a href="CreerEvent.php" role="button">Créer un évènement</a></li>
             <li class="active"><a href="modifierMonProfil.php"> Modifier mon profil <span class="sr-only">(current)</span></a></li>
             <li><a href="modifierMotDePasse.php" role="button">Modifier mon mot de passe</a></li>
+            <li><a href="desinscription.php" role="button">Me désinscrire</a></li>
           </ul>
         </div>
       </div>

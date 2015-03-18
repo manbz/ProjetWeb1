@@ -11,7 +11,7 @@ $prenom=$_POST['prenom'];
 $nom=$_POST['nom'];
 $email=$_POST['email'];
 $adresse=$_POST['adresse'];
-$CP=$_POST['codePostal'];
+$CP=$_POST['CP'];
 $ville=$_POST['ville'];
 
 
@@ -41,8 +41,19 @@ else
      $inscription=mysql_query($rqinscrip);
      $_SESSION['identifiant']=$identifiant;
      $_SESSION['prenom']=$prenom;
+     $_SESSION['nom']=$nom;
+     $_SESSION['adresse']=$adresse;
+     $_SESSION['CodePostal']=$CP;
+     $_SESSION['ville']=$ville;
+     $_SESSION['email']=$email;
+     $_SESSION['newletter']=$news;
 
-     header ('Location: PageMembre.php');
+     if ($_SESSION['identifiant']=='gestionnaire') 
+        {
+           header ('Location: PageGestionnaire.php'); 
+        }
+        else
+        {header ('Location: PageMembre.php');}
     }
 
 ?>

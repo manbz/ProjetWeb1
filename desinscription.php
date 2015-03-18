@@ -21,19 +21,25 @@ include 'Header.php';
       <div  class="row">
         <div id="menu" class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li><a href="" role="button">Mes évènements</a></li>
+              <li><a href="PageMembre.php" role="button">Mes évènements</a></li>
             <li><a href="PageGroupe.php" role="button">Créer un groupe</a></li>
             <li><a href="" role="button">Créer un évènement</a></li>
-            <li><a href="modifierMonProfil.php"> Modifier mon profil <span class="sr-only">(current)</span></a></li>
-			<li class="active"><a href="desinscription.php" role="button">Me désinscrire</a></li>
+            <li><a href="modifierMonProfil.php"> Modifier mon profil </a></li>
+            <li class="active"><a href="desinscription.php" role="button">Me désinscrire<span class="sr-only">(current)</span></a></li>
 
           </ul>
         </div>
       </div>
         </div>
+      <h2 id="lignesTitre" class="sub-header">Desinscrption</h2>
+      <div id="lignes" class="table-responsive">
+      
 		      <form method="POST" action="Traitement-Desinscription.php">
 
 <strong>Souhaitez-vous réellement vous désinscrire définitivement de HappyTime?</strong> <br/><br/>Vous n'aurez plus accès aux évènements auxquels vous êtes inscrits et ne pourraient plus visualiser les évènements privés
         <br/><br/><br/><button class="btn btn-success" type="submit">Se désinscrire</button>
+        </div>
+
+
 
 

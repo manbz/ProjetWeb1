@@ -1,8 +1,8 @@
 <?php
-include 'Header.php';
+session_start();
+require 'connect.php';
 ?>
 
-<html lang="fr">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,9 +13,14 @@ include 'Header.php';
     <link href="css/dashboard.css" rel="stylesheet">
   </head>
     
-  <body>
-
-      <div  class="container-fluid">
+<?php
+  include 'Header.php';
+  
+  if (isset($_SESSION['identifiant']) && $_SESSION['identifiant']!='gestionnaire') 
+    {
+    ?>
+  
+    <div  class="container-fluid">
       <div  class="row">
         <div id="menu" class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
@@ -24,10 +29,11 @@ include 'Header.php';
             <li><a href="CreerEvent.php" role="button">Créer un évènement</a></li>
             <li><a href="modifierMonProfil.php" role="button">Modifier mon profil</a></li>
             <li><a href="modifierMotDePasse.php" role="button">Modifier mon mot de passe</a></li>
+            <li><a href="desinscription.php" role="button">Me désinscrire</a></li>
           </ul>
         </div>
       </div>
-        </div>
+    </div>
 
       <h2 id="lignesTitre" class="sub-header">Je participe aux évènements</h2>
       <div id="lignes" class="table-responsive">
@@ -43,95 +49,59 @@ include 'Header.php';
               </thead>
 				<tbody>
 			  <?php
-	require 'connect.php';
-	
-	if ($CONNEXION)
-	{	
-		$Req1="SELECT identifiant FROM UTILISATEUR WHERE Prenom='Carl' AND Nom='Moscet'";
-		$Membre=mysql_query($Req1);
-					echo $Membre;
-		$Req="SELECT * FROM APPARTENIRENPRIVE, GROUPE, EVENEMENT, LIEU, SEDEROULE WHERE SEDEROULE.NumEvenement=EVENEMENT.NoEvenement AND GROUPE.NoGroupe=APPARTENIRENPRIVE.Groupe AND EVENEMENT.Groupe=APPARTENIRENPRIVE.Groupe AND LIEU.NoLieu=EVENEMENT.Lieu AND Membre=$Membre";
+                          //il y avait une ligne en trop
+		$Req="SELECT * FROM APPARTENIRENPRIVE, GROUPE, EVENEMENT, LIEU, SEDEROULE
+                        WHERE SEDEROULE.NumEvenement=EVENEMENT.NoEvenement
+                        AND GROUPE.NoGroupe=APPARTENIRENPRIVE.Groupe
+                        AND LIEU.NoLieu=EVENEMENT.Lieu 
+                        AND Membre='".$_SESSION['identifiant']."'";
+                echo $Req;
 		$Res=mysql_query($Req);
-		$Req2="SELECT * FROM APPARTENIRPUBLIQUEMENT, EVENEMENT, LIEU, SEDEROULE WHERE SEDEROULE.NumEvenement=EVENEMENT.NoEvenement AND EVENEMENT.NoEvenement=APPARTENIRPUBLIQUEMENT.Evenement AND LIEU.NoLieu=EVENEMENT.Lieu AND utilisateur=$Membre";
+                
+		$Req2="SELECT * FROM APPARTENIRPUBLIQUEMENT, EVENEMENT, LIEU, SEDEROULE
+                       WHERE SEDEROULE.NumEvenement=EVENEMENT.NoEvenement 
+                       AND EVENEMENT.NoEvenement=APPARTENIRPUBLIQUEMENT.Evenement 
+                       AND LIEU.NoLieu=EVENEMENT.Lieu 
+                       AND utilisateur='".$_SESSION['identifiant']."'";
 		$Res2=mysql_query($Req2);
+                
 		while ($EVENEMENT=mysql_fetch_array($Res))
 		{?>
-	<tr>
+                <tr>
                   <td> <?php echo $EVENEMENT['Date'];?></td>
                   <td> <?php echo $EVENEMENT['NomEvenement'];?></td>
-                  <td><?php echo $EVENEMENTPUBLIC['NomLieu'];
-			echo $EVENEMENTPUBLIC['AdresseLieu'];
-			echo $EVENEMENTPUBLIC['CodePostalLieu'];
-			echo $EVENEMENTPUBLIC['VilleLieu'];?></td>
+                  <td><?php echo $EVENEMENT['NomLieu'];
+			echo $EVENEMENT['AdresseLieu'];
+			echo $EVENEMENT['CodePostalLieu'];
+			echo $EVENEMENT['VilleLieu'];?></td>
                   <td><?php echo $EVENEMENT['Prix'];?></td>
                 </tr>
-				
-			<?php//echo $EVENEMENT['NomEvenement'];
-			//echo $EVENEMENT['Statut'];
-			//echo $EVENEMENT['Prix'];
-			//echo $EVENEMENT['Description'];
-			//echo $EVENEMENT['NomLieu'];
-			//echo $EVENEMENT['AdresseLieu'];
-			//echo $EVENEMENT['CodePostalLieu'];
-			//echo $EVENEMENT['VilleLieu'];
-			?><br/><?php
+                <?php
 		}
+                
 		while ($EVENEMENTPUBLIC=mysql_fetch_array($Res2))
 		{?>
 			<tr>
                   <td><?php echo $EVENEMENTPUBLIC['Date'];?></td>
                   <td><?php echo $EVENEMENTPUBLIC['NomEvenement'];?></td>
                   <td><?php echo $EVENEMENTPUBLIC['NomLieu'];
-						echo $EVENEMENTPUBLIC['AdresseLieu'];
-						echo $EVENEMENTPUBLIC['CodePostalLieu'];
-						echo $EVENEMENTPUBLIC['VilleLieu'];?></td>
+                            echo $EVENEMENTPUBLIC['AdresseLieu'];
+                            echo $EVENEMENTPUBLIC['CodePostalLieu'];
+                            echo $EVENEMENTPUBLIC['VilleLieu'];?></td>
                   <td><?php echo $EVENEMENTPUBLIC['Prix'];?></td>
 
                 </tr>
 			<?php
 		}
-		
-	}
-	else 
-	{ echo "erreur de connexion"; }
-
-	//$_SESSION['Identifiant']
-	mysql_close();
-?>
-              
-                
-                
-               <!-- <tr>
-                  <td>1,003</td>
-                  <td>Integer</td>
-                  <td>nec</td>
-                  <td>odio</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>libero</td>
-                  <td>Sed</td>
-                  <td>cursus</td>
-
-                </tr>
-                <tr>
-                  <td>1,004</td>
-                  <td>dapibus</td>
-                  <td>diam</td>
-                  <td>Sed</td>
-
-                </tr>-->
+    }
+                else
+                {
+                    header('Location:Accueil.php');
+                }
+                        ?>
               </tbody>
             </table>
           </div>
-        </div>
-      </div>
-    </div>
 
-      
-      
   </body>
-
-
-</html>
 
