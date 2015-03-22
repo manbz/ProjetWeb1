@@ -36,11 +36,9 @@ require 'connect.php';
         </div>
       </div>
     </div>
-
-  
   
       
- <h2 id="lignesTitre" class="sub-header">Tous les évènements</h2>
+ <h2 id="lignesTitre" class="sub-header">Validation des évenements crées</h2>
   
       <div id="lignes" class="table-responsive">
           <table id="largeurLigne" class="table table-striped">
@@ -56,22 +54,53 @@ require 'connect.php';
               </thead>
               <tbody> 
             
+               <?php
+               
+              $rqValidationEvent="SELECT * FROM evenement WHERE validation='En attente'";
+              $validationEvent=mysql_query($rqValidationEvent);
+  
+              $i=0;
+              while($EventNonValide=mysql_fetch_array($validationEvent))
+              {
+                  $rqDateHoraire="SELECT Date, Horaire 
+                               FROM sederoule, evenement
+                               WHERE NoEvenement='".$EventNonValide['NoEvenement']."'";
+
+               $DateHoraire=  mysql_query($rqDateHoraire);
+               $Date=mysql_result($DateHoraire, 0, 'Date');
+               $Horaire=mysql_result($DateHoraire, 0, 'Horaire');
+               
+               $rqLieu="SELECT NomLieu
+                                 FROM evenement, lieu
+                                 WHERE NoEvenement='".$EventNonValide['NoEvenement']."'
+                                 AND lieu.NoLieu=evenement.Lieu";
+               $Lieu=  mysql_query($rqLieu);
+               $LieuEvent=mysql_result($Lieu, 0, 'NomLieu');
+               
+               $rqCategorie="SELECT NomCategorie 
+                                 FROM evenement, categorie 
+                                 WHERE NoEvenement='".$EventNonValide['NoEvenement']."'
+                                 AND categorie.IdCategorie=evenement.Categorie";
+
+               $Categorie=  mysql_query($rqCategorie);
+               $categorieEvent=mysql_result($Categorie, 0, 'NomCategorie');
+               $i++;
+              ?>
                 <tr>
                   <td name="dateevent"><?php echo $Date; ?></td>
-                  <td name="nomevent"><?php echo $chaqueevent['NomEvenement']; ?></td>
-                  <td name="categorieevent"><?php echo $categorie; ?></td>
-                  <td name="lieuevent"><?php echo $Lieu; ?></td>
-                  <td name="heureevent"><?php echo $Heure; ?></td>
-                  <td name="prixevent"><?php echo $chaqueevent['Prix']; ?></td>
-                  
-              <!-- il faut que je recupere les données de la page et que je les envois a supprimerevent-->
+                  <td name="nomevent"><?php echo $EventNonValide['NomEvenement']; ?></td>
+                  <td name="categorieevent"><?php echo $categorieEvent; ?></td>
+                  <td name="lieuevent"><?php echo $LieuEvent ?></td>
+                  <td name="heureevent"><?php echo $Horaire; ?></td>
+                  <td name="prixevent"><?php echo $EventNonValide['Prix']; ?></td>
                 
                 
-                  <td><form method="POST" action="SupprimerEvent.php">
-                    <input type="hidden" name="NomEvent" value="<?php echo $chaqueevent['NomEvenement']; ?>">
-                    <input class="btn" value="Supprimer l'évènement" href="SupprimerEvent.php" type="submit" role="button"></form></td>
-              
+                  <td><form method="POST" action="ValiderEvent.php">
+                    <input type="hidden" name="NoEvent" value="<?php echo $EventNonValide['NoEvenement']; ?>">
+                    <input class="btn" value="Valider l'evenement" href="ValiderEvent.php" type="submit" role="button"></form></td>
                 </tr>
+                
+         <?php } ?>
                 
               </tbody>
             </table>

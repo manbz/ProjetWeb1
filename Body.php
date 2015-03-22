@@ -14,7 +14,7 @@
         {
         ?>
               </h1>
-              <h1>Happy'culture</h1>
+              <h1><img  src="logo.png" alt ="event2"/>Happy'culture</h1>
          
           <?php 
         }
@@ -32,32 +32,35 @@
 	  <?php
 	  
 	  $Req1="SELECT * FROM EVENEMENT, CATEGORIE, LIEU, SEDEROULE
-                  WHERE EVENEMENT.NoEvenement=SEDEROULE.NumEvenement 
-                  AND EVENEMENT.NoEvenement=CATEGORIE.NoEvenement 
+                  WHERE Validation='oui'
+                  AND EVENEMENT.NoEvenement=SEDEROULE.NumEvenement 
+                  AND EVENEMENT.categorie=CATEGORIE.IdCategorie 
                   AND EVENEMENT.Lieu=LIEU.NoLieu 
                   AND date=(SELECT Min(date)) ORDER BY date";
 	 
 	  $donnees1=mysql_query($Req1);
           $i=0;
             while($i<6 && $Evenement=mysql_fetch_array($donnees1))
-{
+                  {
 		  ?>
 		<div class="row">
                 <div class="col-md-4">
                     <div id='disposition1'>
                         <h3><?php echo $Evenement['NomEvenement'] ?></h3>Le <?php echo $Evenement['Date'] ?>
                             <div id='image'>
-                            <p><img id="tailleimg" src="<?php$Evenement['Photo']?>" alt ="event1"/></p>
+                                <p><img id="tailleimg" src="" alt ="image"/></p>
                             </div>
-                            <p><a class="btn btn-default" href="pageEvenement.php" role="button" type="submit">Voir l'évènement &raquo;</a></p>
+                        <p><form method="POST" action="PageEvenement.php">
+                    <input type="hidden" name="NomEvenement" value="<?php echo $Evenement['NomEvenement']; ?>">
+                    <input class="btn btn-default" href="PageEvenement.php" role="button" type="submit" value="Voir l'évènement &raquo;"></form>
                     </div>
                 </div>
 		  <?php
-                    $i=$i+1;
+                    $i++;
                     }
                  ?>
 
-                <?php echo $NomEvenement[3] ?>Le <?php echo $Date[2] ?>
+               
 
       </div>
     </div>

@@ -2,6 +2,21 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/Applications/MAMP/htdocs/ProjetWeb/Header.php</file>
+            <file>file:/Applications/MAMP/htdocs/ProjetWeb/desinscription.php</file>
+            <file>file:/Applications/MAMP/htdocs/ProjetWeb/PageGestionnaire.php</file>
+            <file>file:/Applications/MAMP/htdocs/ProjetWeb/SupprimerMembre.php</file>
+            <file>file:/Applications/MAMP/htdocs/ProjetWeb/GererGroupe.php</file>
+            <file>file:/Applications/MAMP/htdocs/ProjetWeb/Traitement-inscription.php</file>
+            <file>file:/Applications/MAMP/htdocs/ProjetWeb/Body.php</file>
+            <file>file:/Applications/MAMP/htdocs/ProjetWeb/GererMembres.php</file>
+            <file>file:/Applications/MAMP/htdocs/ProjetWeb/modifierMonProfil.php</file>
+            <file>file:/Applications/MAMP/htdocs/ProjetWeb/GererEvent.php</file>
+            <file>file:/Applications/MAMP/htdocs/ProjetWeb/SupprimerGroupe.php</file>
+            <file>file:/Applications/MAMP/htdocs/ProjetWeb/PageEvenement.php</file>
+            <file>file:/Applications/MAMP/htdocs/ProjetWeb/Traitement-modification.php</file>
+            <file>file:/Applications/MAMP/htdocs/ProjetWeb/Inscription.php</file>
+        </group>
     </open-files>
 </project-private>

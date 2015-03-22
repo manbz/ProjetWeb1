@@ -5,26 +5,23 @@ require 'connect.php';
 
 $nomGroupe=$_POST['nomGroupe'];
 
-$rqverifgroupe="SELECT NomGroupe FROM groupe WHERE NomGroupe='".$nomGroupe."'";
-$verifroupe=  mysql_query($rqverifgroupe);
-$nbNomGroupe=  mysql_num_rows($verifroupe);
-
 if ($nbNomGroupe==0) 
 {
-    
+//Insertion dans la table groupe   
 $rqGroupe="INSERT INTO groupe (Responsable, NomGroupe) VALUES('".$_SESSION['identifiant']."','".$nomGroupe."')";
 $creationgroupe=mysql_query($rqGroupe);
 
-
-
+//On recupere le numéro du groupe dans la base
 $recupnogroupe="SELECT NoGroupe FROM groupe WHERE NomGroupe='".$nomGroupe."'";
-
 $resultatgroupe=mysql_query($recupnogroupe);
 $nogroupe=mysql_result($resultatgroupe, 0, 'NoGroupe');
 
-
+//Le créateur du groupe est automatiquement dans le groupe
+$rqCreateurGroupe="INSERT INTO appartenirenprive VALUES ('".$_SESSION['identifiant']."','".$nogroupe."')";
+mysql_query($rqCreateurGroupe);
 
 $i=0;
+//insertion des membres du groupe dans la table appartenirenprive
 while (list($id_membre,$membre)=each($_POST['ListeMembre']))
 {$rqmembregroupe="INSERT INTO appartenirenprive VALUES ('".$membre."','".$nogroupe."')";
 mysql_query($rqmembregroupe);

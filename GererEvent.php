@@ -59,32 +59,37 @@ require 'connect.php';
               $i=0;
               while($chaqueevent=mysql_fetch_array($AllEvent))
               {
+               $rqDateHoraire="SELECT Date, Horaire 
+                               FROM sederoule, evenement
+                               WHERE NoEvenement='".$chaqueevent['NoEvenement']."'";
+
+               $DateHoraire=  mysql_query($rqDateHoraire);
+               $Date=mysql_result($DateHoraire, 0, 'Date');
+               $Horaire=mysql_result($DateHoraire, 0, 'Horaire');
+               
+               $rqLieu="SELECT NomLieu
+                                 FROM evenement, lieu
+                                 WHERE NoEvenement='".$chaqueevent['NoEvenement']."'
+                                 AND lieu.NoLieu=evenement.Lieu";
+               $Lieu=  mysql_query($rqLieu);
+               $LieuEvent=mysql_result($Lieu, 0, 'NomLieu');
+               
+               $rqCategorie="SELECT NomCategorie 
+                                 FROM evenement, categorie 
+                                 WHERE NoEvenement='".$chaqueevent['NoEvenement']."'
+                                 AND categorie.IdCategorie=evenement.Categorie";
+
+               $Categorie=  mysql_query($rqCategorie);
+               $categorieEvent=mysql_result($Categorie, 0, 'NomCategorie');
                   
-                  
-               $rqcategorieEvent="SELECT NomCategorie FROM categorie WHERE NoEvenement='".$chaqueevent['NoEvenement']."'";
-               $categorieEvent=mysql_query($rqcategorieEvent);
-               $categorie=mysql_result($categorieEvent, 0, 'NomCategorie');
-               
-               $rqdateHeure="SELECT Date, Horaire FROM sederoule WHERE NumEvenement='".$chaqueevent['NoEvenement']."'";
-               $DateHeure=  mysql_query($rqdateHeure);
-               $Date=mysql_result($DateHeure, 0, 'Date');
-               $Heure=mysql_result($DateHeure, 0, 'Horaire');
-              
-               
-               $rqLieu="SELECT NomLieu FROM Lieu WHERE NoLieu='".$chaqueevent['Lieu']."'";
-               
-               $ResLieu=  mysql_query($rqLieu);
-               $Lieu=mysql_result($ResLieu, 0, 'NomLieu');
-               //il y a un soucis parce que pour un meme evenement il y a differentes dates et differents horaires
-               
                $i++;
               ?>
                 <tr>
                   <td name="dateevent"><?php echo $Date; ?></td>
                   <td name="nomevent"><?php echo $chaqueevent['NomEvenement']; ?></td>
-                  <td name="categorieevent"><?php echo $categorie; ?></td>
-                  <td name="lieuevent"><?php echo $Lieu; ?></td>
-                  <td name="heureevent"><?php echo $Heure; ?></td>
+                  <td name="categorieevent"><?php echo $categorieEvent; ?></td>
+                  <td name="lieuevent"><?php echo $LieuEvent ?></td>
+                  <td name="heureevent"><?php echo $Horaire; ?></td>
                   <td name="prixevent"><?php echo $chaqueevent['Prix']; ?></td>
                   
               <!-- il faut que je recupere les données de la page et que je les envois a supprimerevent-->

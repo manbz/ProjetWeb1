@@ -11,7 +11,7 @@ mysql_query($rqsupprimerGroupe);
 
 
 $rqsupprimerGroupe2="DELETE FROM appartenirenprive
-                   WHERE Groupe='".$NoGroupe."')";
+                   WHERE Groupe='".$NoGroupe."'";
 mysql_query($rqsupprimerGroupe2);
 
 header('Location: GererGroupe.php');

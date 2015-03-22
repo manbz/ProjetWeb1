@@ -1,7 +1,3 @@
-<?php
-session_start();
-?>
-
 <html lang="fr">
   <head>
     <meta charset="utf-8">
@@ -24,6 +20,7 @@ session_start();
         <div id="menu" class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li><a href="PageMembre.php" role="button">Mes évènements</a></li>
+            <li><a href="MesGroupes.php">Mes groupes</a></li>
             <li><a href="CreerGroupe.php" role="button">Créer un groupe</a></li>
             <li class="active"><a href="CreerEvent.php" role="button">Créer un évènement<span class="sr-only">(current)</span></a></li>
             <li><a href="modifierMonProfil.php"> Modifier mon profil </a></li>
@@ -43,15 +40,24 @@ session_start();
             <input type="text" name="nomEvent" class="form-control" placeholder="Nom de l'évènement" required>
             <input type="text" name="prixEvent" class="form-control" placeholder="Prix de l'évènement" required >
             <textarea cols="20" rows="4" name="descriptionEvent" id="adresse" class="form-control" placeholder="Description de l'évènement" required></textarea>
+            <input type="text" name="NbParticipant" class="form-control" placeholder="Nombre de participants maximum" required >
+
             <h5 class="form-signin-heading" id="titre4">Choisissez la date de l'évènement</h5>
             <input type="date" name="date" class="form-control" placeholder="Date" required >
             <h5 class="form-signin-heading" id="titre4">Choisissez l'heure de début l'évènement</h5>
             <input type="time" name="heure" class="form-control" placeholder="Heure de début" required >
+            <h5 class="form-signin-heading" id="titre4">Choisissez les caracteristiques du lieu</h5>
+            <input type="text" name="NomLieu" class="form-control" placeholder="Nom du lieu" required >
+            <input type="text" name="AdresseLieu" class="form-control" placeholder="Adresse" required >
+            <input type="text" name="CP" class="form-control" placeholder="Code Postal" required >
+            <input type="text" name="Ville" class="form-control" placeholder="Ville" required >
+
+            
             <h5 class="form-signin-heading" id="titre4">Choisissez la catégorie de l'évènement</h5>
             <select size="4" class="form-control" name="categorie" required>
               <?php
               //affiche les differentes catégories
-                $rqcategorie="SELECT DISTINCT NomCategorie FROM categorie";
+                $rqcategorie="SELECT NomCategorie FROM CATEGORIE";
                 $categorie=mysql_query($rqcategorie);
                 $nbcategorie=mysql_num_rows($categorie);
                 $i=0;
@@ -88,7 +94,6 @@ session_start();
                     
                     while ($chaquegroupe=mysql_fetch_array($touslesgroupes)) 
                     {
-                        //echo $chaquegroupe['NomGroupe'];
                         echo '<option name="groupe" value="'.$chaquegroupe['NomGroupe'].'">'.$chaquegroupe['NomGroupe'].'</option>';
                     }
                 }
@@ -100,16 +105,6 @@ session_start();
             <br/>
             <button class="btn btn-success" type="submit">Créer l'évènement</button>
       </form>
-    </div> 
-        
-<?php
-//il faut faire un if pour savoir si l'utilisateur appartient a un groupe ou pas 
-//en fonction de ca on connaitra le statut (public ou privé) de l'évènement
-?>
-
-
-      
+    </div>      
   </body>
-
-
 </html>

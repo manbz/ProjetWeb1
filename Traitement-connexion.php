@@ -2,9 +2,6 @@
 session_start();
 
 require 'connect.php';
-$mdpFaux=FALSE;
-$pseudoFaux=FALSE;
-
 
 $idsaisi=$_POST['identifiant'];
 $rq2="SELECT mdp FROM UTILISATEUR WHERE identifiant='".$idsaisi."'";
@@ -31,12 +28,8 @@ if ($nbresultat!=0)
         $_SESSION['ville']=mysql_result($recup, 0, 'Ville');
         $_SESSION['email']=mysql_result($recup, 0, 'Email');
         
-        
-
-        
-        $_SESSION['identifiant'] = $idsaisi;
-        //$_SESSION['prenom']=$prenom;
-        
+  
+        $_SESSION['identifiant'] = $idsaisi;        
         
         $mdpFaux=FALSE;
         $pseudoFaux=FALSE;
@@ -49,10 +42,9 @@ if ($nbresultat!=0)
         {header ('Location: PageMembre.php');}
     }
         
-    else
+    else //mauvais mot de passe
     {
-        //mauvais mdp
-        $mdpFaux=TRUE;
+
         header ('Location: Connexion.php');
         
     }
@@ -60,7 +52,7 @@ if ($nbresultat!=0)
 }
 else
 {   //mauvais pseudo
-    $pseudoFaux=1;
+
     header ('Location: Connexion.php');
      
 }

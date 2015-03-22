@@ -44,7 +44,7 @@ require 'connect.php';
                 <tr>
                   <th>N°</th>
                   <th>Nom</th>
-                  <th>Nombre de participant</th>
+                  <th>Nombre de participants</th>
                   <th>Créateur</th>
                </tr>
               </thead>

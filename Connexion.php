@@ -10,6 +10,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="Style-formulaire.css" rel="stylesheet">
     <link href="Style-general.css" rel="stylesheet">
+     <link href="css/sticky-footer-navbar.css" rel="stylesheet">
   </head>
   
   <body>
@@ -23,18 +24,22 @@
       <form class="form-signin" method="POST" action="Traitement-connexion.php">
         <h2 class="form-signin-heading" id="titre3">Connectez vous!</h2>
         <input type="text" name="identifiant" class="form-control" placeholder="Identifiant" required autofocus>
-        <?php     
-        //if (empty ($_SESSION['identifiant'])) 
-           //   {
-             //     echo 'Votre pseudo est erroné';
-            //  }
+        <?php if (isset($_POST['retour']) && $_POST['retour']=='pseudoFaux') 
+              {
+                echo 'Le pseudo est faux';
+              }
         ?>
         <input type="password" name="mdp" class="form-control" placeholder="Mot de passe" required>
+        <?php
+        if (isset($_POST['retour']) && $_POST['retour']=='mdpFaux') 
+              {
+                echo 'Le mot de passe est faux';
+              }
+        ?>
         <button class="btn btn-success" type="submit">Se connecter</button>
-      </form>
-        
-        
-        
+      </form>        
     </div> 
+      
+      <?php include 'Footer.php';?>
   </body>
 </html>

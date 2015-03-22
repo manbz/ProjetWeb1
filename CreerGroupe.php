@@ -26,6 +26,7 @@ session_start();
         <div id="menu" class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
               <li><a href="PageMembre.php" role="button">Mes évènements</a></li>
+              <li><a href="MesGroupes.php">Mes groupes</a></li>
             <li class="active"><a href="CreerGroupe.php" role="button">Créer un groupe <span class="sr-only">(current)</span></a></li>
             <li><a href="CreerEvent.php" role="button">Créer un évènement</a></li>
             <li><a href="modifierMonProfil.php" role="button">Modifier mon profil</a></li>
@@ -48,7 +49,11 @@ session_start();
         <h5 class="form-signin-heading" id="consigne">Pour selectionner plusieurs membres maintenez la touche "CTRL" enfoncée</h5>
         <select size="4" multiple="multiple" class="form-control" name="ListeMembre[]" id="membre">Membres
            <?php
-        $rqmembres="SELECT identifiant FROM UTILISATEUR";
+        $rqmembres="SELECT identifiant 
+                    FROM UTILISATEUR 
+                    WHERE identifiant!='gestionnaire'
+                    AND identifiant!='".$_SESSION['identifiant']."'";
+        
         $membre=mysql_query($rqmembres);
         $nbmembre=mysql_num_rows($membre);
         $i=0;
@@ -64,7 +69,7 @@ session_start();
         }
         ?>
         </select>
-        
+        <h5 class="form-signin-heading" id="titre4">Vous êtes automatiquement dans ce groupe</h5>
         <button class="btn btn-success" type="submit">Créer</button>
       </form>
     </div> 

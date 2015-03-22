@@ -22,6 +22,7 @@ session_start();
         <div id="menu" class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
               <li><a href="PageMembre.php" role="button">Mes évènements</a></li>
+              <li><a href="MesGroupes.php">Mes groupes</a></li>
             <li><a href="CreerGroupe.php" role="button">Créer un groupe</a></li>
             <li><a href="CreerEvent.php" role="button">Créer un évènement</a></li>
             <li><a href="modifierMonProfil.php" role="button"> Modifier mon profil</a></li>

@@ -22,9 +22,11 @@ include 'Header.php';
         <div id="menu" class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
               <li><a href="PageMembre.php" role="button">Mes évènements</a></li>
-            <li><a href="PageGroupe.php" role="button">Créer un groupe</a></li>
+              <li><a href="MesGroupes.php">Mes groupes</a></li>
+            <li><a href="CreerGroupe.php" role="button">Créer un groupe</a></li>
             <li><a href="" role="button">Créer un évènement</a></li>
             <li><a href="modifierMonProfil.php"> Modifier mon profil </a></li>
+            <li><a href="modifierMotDePasse.php" role="button">Modifier mon mot de passe</a></li>
             <li class="active"><a href="desinscription.php" role="button">Me désinscrire<span class="sr-only">(current)</span></a></li>
 
           </ul>
